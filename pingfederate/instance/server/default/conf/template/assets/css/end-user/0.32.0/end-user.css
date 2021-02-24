@@ -7499,6 +7499,7 @@ input:-webkit-autofill:active ~ .float-label__label, input:-webkit-autofill:focu
 
 .org-logo {
     text-align: center;
+    background: #4D148C;
     margin: 0 auto 25px;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
