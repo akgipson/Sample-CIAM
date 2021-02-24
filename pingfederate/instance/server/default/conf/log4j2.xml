@@ -96,8 +96,8 @@
         <charset>UTF-8</charset>
         -->
         
-        <RollingFile name="SecurityAudit2Splunk" fileName="${sys:pf.log.dir}/splunk-audit.log"
-            filePattern="${sys:pf.log.dir}/splunk-audit.%d{yyyy-MM-dd}.log"
+        <RollingFile name="SecurityAudit2Splunk" fileName="/opt/logs/splunk-audit.log"
+            filePattern="/opt/logs/splunk-audit.%d{yyyy-MM-dd}.log"
             ignoreExceptions="false">
             <PatternLayout>
                 <pattern>%d trackingid=&quot;%X{trackingid}&quot; event=%X{event} subject=&quot;%X{subject}&quot; ip=%X{ip} app=%X{app} connectionid=%X{connectionid} protocol=&quot;%X{protocol}&quot; pfhost=%X{host} role=%X{role} status=%X{status} adapterid=%X{adapterid} description=&quot;%X{description}&quot; responsetime=%X{responsetime} inmessagetype=&quot;%X{inmessagetype}&quot; %n</pattern>
