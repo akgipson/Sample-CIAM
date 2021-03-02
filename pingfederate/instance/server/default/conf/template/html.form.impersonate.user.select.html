@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+#*
+The server renders this HTML page in an end-user's browser when
+needed authentication credentials may be obtained via HTTP Basic
+Authentication or an HTML form.
+
+Velocity variables (identified by the $ character) are generated
+at runtime by the server.
+
+The following variables are available on this page, but not used by default:
+
+$entityId       - The entity id (connection id) of the SP Connection used in this SSO transaction
+$connectionName - The name of the SP Connection used in this SSO transaction
+
+Change text or formatting as needed. Modifying Velocity statements
+is not recommended as it may interfere with expected server behavior.
+*#
+
+<!-- template name: html.form.login.template.html -->
+
+#set( $messageKeyPrefix = "html.form.impersonate.user." )
+<html lang="$locale.getLanguage()" dir="ltr">
+<head>
+    <title>Impersonate User</title>
+    <base href="$PingFedBaseURL"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/main.css"/>
+</head>
+<body>
+<div class="ping-container ping-signin">
+    <div class="ping-header">
+        Impersonate User
+    </div>
+    <!-- .ping-header -->
+    <div class="ping-body-container">
+        <div class="section-title">
+            Select User 
+        </div>
+        <div class="ping-input-label">
+                #if($userList.size() > 0)
+			<p>Select the person you wish to impersonate</p>
+		#else
+			<p>No users found. Please revise your search and try again.</p>
+		#end
+        </div>
+        <div>
+
+            <form method="POST" action="$action" autocomplete="off">
+		<div class="ping-messages">
+			#if($errorMessage)
+                		<div class="ping-error">$errorMessage</div>
+                	#end
+		</div>
+
+		<div id="wrap">
+			#if($userList.size()>0)
+        			#foreach($row in $userList)
+                			<div>
+						<a href="javascript:void(0)" onclick="postSelect('$row.getSingleValue("Subject DN")');" class="ping-button" style="background-color:grey;" title="New Search")">
+                        				Impersonate
+                    				</a>
+					
+                			</div>
+					<div>&nbsp;</div>
+                			<div>
+                        			<ul>
+                                			#foreach($attr in $returnAttributes)
+                                				<li class="ping-input-label">$attr.getFieldValue("Return Label"): $row.get($attr.getFieldValue("Return Attribute"))</li>
+                                			#end
+                        			</ul>
+                			</div>
+        			#end
+			#end
+		</div>
+		<div class="ping-buttons">
+                    <input type="hidden" name="$ok" value=""/>
+                    <input type="hidden" name="$cancel" value=""/>
+		    <input type="hidden" name="ACTION_IMPERSONATE" value=""/>
+		    <input type="hidden" name="SELECTED_USERNAME" value=""/>
+
+        #foreach($row in $searchRows)
+                #set($searchParamName = "HTML_SEARCHFIELD_" + $row.getFieldValue("Search Attribute"))
+                #set($searchParamValue = $searchParams.get($searchParamName))
+                    <input type="hidden" value="$searchParamValue" name="HTML_SEARCHFIELD_$row.getFieldValue("Search Attribute")"/>
+        #end
+
+                    <a href="javascript:void(0)" onclick="postCancel();" class="ping-button blue deny" title="Cancel")">
+                        Cancel
+                    </a>
+                    <a href="javascript:void(0)" onclick="postOk();" class="ping-button normal allow" title="New Search")">
+                        Revise Search
+                    </a>
+		</div>     
+            </form>
+
+        </div><!-- .ping-body -->
+    </div><!-- .ping-body-container -->
+    <div class="ping-footer-container">
+        <div class="ping-footer">
+            <div class="ping-credits"/>
+        </div> <!-- .ping-footer -->
+    </div> <!-- .ping-footer-container -->
+</div><!-- .ping-container -->
+
+<script type="text/javascript">
+
+    function postSelect(dn)
+    {
+        document.forms[0]['$ok'].value = 'clicked';
+        document.forms[0]['ACTION_IMPERSONATE'].value = 'SELECT_USER';
+	document.forms[0]['SELECTED_USERNAME'].value = dn;
+        document.forms[0].submit();
+    }
+
+    function postOk() {
+        document.forms[0]['$ok'].value = 'clicked';
+	document.forms[0]['ACTION_IMPERSONATE'].value = 'REVISE_SEARCH';
+        document.forms[0].submit();
+    }
+    function postCancel() {
+        document.forms[0]['$cancel'].value = 'clicked';
+	document.forms[0]['ACTION_IMPERSONATE'].value = 'SKIP';
+        document.forms[0].submit();
+    }
+</script>
+
+</body>
+</html>
+
