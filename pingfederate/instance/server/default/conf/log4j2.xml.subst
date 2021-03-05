@@ -49,8 +49,8 @@
         <!-- ================================= -->
 
         <!-- Main log : A size based file rolling appender -->
-        <RollingFile name="FILE" fileName="${sys:pf.log.dir}/server.log"
-                     filePattern="${sys:pf.log.dir}/server.log.%i" ignoreExceptions="false">
+        <RollingFile name="FILE" fileName="/opt/logs/server.log"
+                     filePattern="/opt/logs/server.log.%i" ignoreExceptions="false">
             <PatternLayout>
                 <!-- Uncomment this if you want to use UTF-8 encoding instead
                     of system's default encoding.
@@ -65,8 +65,8 @@
         </RollingFile>
 
         <!-- SAML Transaction log : A time/date based rolling appender -->
-        <RollingFile name="SamlTransaction" fileName="${sys:pf.log.dir}/transaction.log"
-                     filePattern="${sys:pf.log.dir}/transaction.%d{yyyy-MM-dd}.log"
+        <RollingFile name="SamlTransaction" fileName="/opt/logs/transaction.log"
+                     filePattern="/opt/logs/transaction.%d{yyyy-MM-dd}.log"
                      ignoreExceptions="false">
             <PatternLayout>
                 <!-- Uncomment this if you want to use UTF-8 encoding instead
@@ -80,24 +80,20 @@
         </RollingFile>
 
         <!-- Security Audit log for Splunk: A time/date based rolling appender
-
         NOTES:
-
         You must also uncomment the reference to this appender in one or more of the following loggers
         (under "Loggers" below) before it can be used:
-
         org.sourceid.websso.profiles.sp.SpAuditLogger (when PingFederate is acting as a Service Provider)
         org.sourceid.websso.profiles.idp.IdpAuditLogger (when PingFederate is acting as an Identity Provider)
         org.sourceid.wstrust.log.STSAuditLogger (when PingFederate is acting as a Security Token Service)
         org.sourceid.websso.profiles.idp.AsAuditLogger (when PingFederate is acting as an OAuth Authorization Server)
-
         If you want to use UTF-8 encoding instead of system's default encoding add
         the following line to "PatternLayout"
         <charset>UTF-8</charset>
         -->
-        <!--
-        <RollingFile name="SecurityAudit2Splunk" fileName="${sys:pf.log.dir}/splunk-audit.log"
-            filePattern="${sys:pf.log.dir}/splunk-audit.%d{yyyy-MM-dd}.log"
+        
+        <RollingFile name="SecurityAudit2Splunk" fileName="/opt/logs/splunk-audit.log"
+            filePattern="/opt/logs/splunk-audit.%d{yyyy-MM-dd}.log"
             ignoreExceptions="false">
             <PatternLayout>
                 <pattern>%d trackingid=&quot;%X{trackingid}&quot; event=%X{event} subject=&quot;%X{subject}&quot; ip=%X{ip} app=%X{app} connectionid=%X{connectionid} protocol=&quot;%X{protocol}&quot; pfhost=%X{host} role=%X{role} status=%X{status} adapterid=%X{adapterid} description=&quot;%X{description}&quot; responsetime=%X{responsetime} inmessagetype=&quot;%X{inmessagetype}&quot; %n</pattern>
@@ -106,10 +102,10 @@
                 <TimeBasedTriggeringPolicy />
             </Policies>
         </RollingFile>
-        -->
+       
 
-        <RollingFile name="SecurityAudit2File" fileName="${sys:pf.log.dir}/audit.log"
-                     filePattern="${sys:pf.log.dir}/audit.%d{yyyy-MM-dd}.log"
+        <RollingFile name="SecurityAudit2File" fileName="/opt/logs/audit.log"
+                     filePattern="/opt/logs/audit.%d{yyyy-MM-dd}.log"
                      ignoreExceptions="false">
             <PatternLayout>
                 <!-- Uncomment this if you want to use UTF-8 encoding instead
@@ -138,7 +134,6 @@
                 %X{validatorid} - ID of the Password Credentials Validator used
                 %X{targetsessionid} - For IdP connections' browser SSO, this will be the SP adapter ID(s) or the SP connection partner entity ID(s) that were invoked in an authentication/logout flow. Multiple target sessions will appear as an array, i.e. [spadapter1, spconn1]
                 %X{description} - description of failure
-
                 %X{assertionid} - ID from Assertion
                 %X{initiator} - Who initiated the SAML transaction (e.g.: SP)
                 %X{inmessagetype} - high level (protocol) message type
@@ -148,16 +143,13 @@
                 %X{outurl} - URL where the protocol response was sent. For security, all query parameters and URL fragments are excluded.
                 %X{requestid} - ID of the original request
                 %X{responseid} - ID of the response
-
                 %X{accessgrantguid} - The GUID of the OAuth Access Grant
                 %X{attrackingid} - OAuth Access Token tracking ID. It is used to debug the flow of OAuth access tokens in the audit log and between PingFederate and PingAccess
                 %X{granttype} - OAuth grant type(s)
-
                 %X{stspluginid} - ID of the Token Processor / Token Generator used (STS only)
-
                 %X{requeststarttime} - start time of the request (milliseconds since midnight, January 1, 1970 UTC).
                 %X{responsetime} - time to process the request, in milliseconds
-
+                
                 %header{a-header-name} - HTTP request header value for the given HTTP request header name
                 %parameter{parameter-name} - HTTP request parameter value for the given HTTP request parameter name
                 %trackedparameter{parameter-name} - Values for a configured tracked parameter that was stored at the start of the transaction
@@ -170,8 +162,8 @@
         </RollingFile>
 
         <!-- Admin Audit log : A time/date based rolling appender -->
-        <RollingFile name="AdminAudit" fileName="${sys:pf.log.dir}/admin.log"
-                     filePattern="${sys:pf.log.dir}/admin.%d{yyyy-MM-dd}.log"
+        <RollingFile name="AdminAudit" fileName="/opt/logs/admin.log"
+                     filePattern="/opt/logs/admin.%d{yyyy-MM-dd}.log"
                      ignoreExceptions="false">
             <PatternLayout>
                 <!-- Uncomment this if you want to use UTF-8 encoding instead
@@ -185,8 +177,8 @@
         </RollingFile>
 
         <!-- Admin Event Detail Audit log : A time/date based rolling appender -->
-        <RollingFile name="AdminEventDetailAudit" fileName="${sys:pf.log.dir}/admin-event-detail.log"
-                     filePattern="${sys:pf.log.dir}/admin-event-detail.%d{yyyy-MM-dd}.log"
+        <RollingFile name="AdminEventDetailAudit" fileName="/opt/logs/admin-event-detail.log"
+                     filePattern="/opt/logs/admin-event-detail.%d{yyyy-MM-dd}.log"
                      ignoreExceptions="false">
             <PatternLayout>
                 <!-- Uncomment this if you want to use UTF-8 encoding instead
@@ -200,8 +192,8 @@
         </RollingFile>
 
         <!-- Admin API Audit log : A time/date based rolling appender -->
-        <RollingFile name="AdminApiAudit" fileName="${sys:pf.log.dir}/admin-api.log"
-                     filePattern="${sys:pf.log.dir}/admin-api.%d{yyyy-MM-dd}.log"
+        <RollingFile name="AdminApiAudit" fileName="/opt/logs/admin-api.log"
+                     filePattern="/opt/logs/admin-api.%d{yyyy-MM-dd}.log"
                      ignoreExceptions="false">
             <PatternLayout>
                 <!-- Uncomment this if you want to use UTF-8 encoding instead
@@ -227,8 +219,8 @@
         </RollingFile>
 
         <!-- Runtime API Audit log : A time/date based rolling appender -->
-        <RollingFile name="RuntimeApiAudit" fileName="${sys:pf.log.dir}/runtime-api.log"
-                     filePattern="${sys:pf.log.dir}/runtime-api.%d{yyyy-MM-dd}.log"
+        <RollingFile name="RuntimeApiAudit" fileName="/opt/logs/runtime-api.log"
+                     filePattern="/opt/logs/runtime-api.%d{yyyy-MM-dd}.log"
                      ignoreExceptions="false">
             <PatternLayout>
                 <!-- Uncomment this if you want to use UTF-8 encoding instead
@@ -254,8 +246,8 @@
         </RollingFile>
 
         <!-- Provisioner log : A time/date based rolling appender -->
-        <RollingFile name="ProvisionerLog" fileName="${sys:pf.log.dir}/provisioner.log"
-                     filePattern="${sys:pf.log.dir}/provisioner.%d{yyyy-MM-dd}.log"
+        <RollingFile name="ProvisionerLog" fileName="/opt/logs/provisioner.log"
+                     filePattern="/opt/logs/provisioner.%d{yyyy-MM-dd}.log"
                      ignoreExceptions="false">
             <PatternLayout>
                 <pattern>%d{ABSOLUTE} %-5p [%c{1}] %m %x %X{ChannelCode}%n</pattern>
@@ -267,8 +259,8 @@
 
         <!-- Outbound provisioner audit log: A time/date based rolling appender -->
         <RollingFile name="OutboundProvisionerEventToFile"
-                     fileName="${sys:pf.log.dir}/provisioner-audit.log"
-                     filePattern="${sys:pf.log.dir}/provisioner-audit.%d{yyyy-MM-dd}.log"
+                     fileName="/opt/logs/provisioner-audit.log"
+                     filePattern="/opt/logs/provisioner-audit.%d{yyyy-MM-dd}.log"
                      ignoreExceptions="false">
             <PatternLayout>
                 <!-- Uncomment this if you want to use UTF-8 encoding instead
@@ -293,20 +285,17 @@
         </RollingFile>
 
         <!-- Outbound provisioner audit log for Splunk: A time/date based
-
         NOTES:
-
         You must also uncomment the reference to the "OutboundProvisionerEventToSplunk" appender in the
         "Set up the Outbound provisioner audit logger" section before the appender can be  used:
-
         If you want to use UTF-8 encoding instead of system's default encoding add
         the following line to "PatternLayout"
         <charset>UTF-8</charset>
         -->
         <!--
         <RollingFile name="OutboundProvisionerEventToSplunk"
-            fileName="${sys:pf.log.dir}/provisioner-audit-splunk.log"
-            filePattern="${sys:pf.log.dir}/provisioner-audit-splunk.%d{yyyy-MM-dd}.log"
+            fileName="/opt/logs/provisioner-audit-splunk.log"
+            filePattern="/opt/logs/provisioner-audit-splunk.%d{yyyy-MM-dd}.log"
             ignoreExceptions="false">
             <PatternLayout>
                 <pattern>%d| cycle_id=%X{cycle_id} channel_id=%X{channel_id} event_type=%X{event_type} source_id=%X{source_id} target_id=%X{target_id} is_success=%X{is_success} non_success_cause=&quot;%X{non_success_cause}&quot; %n</pattern>
@@ -318,18 +307,13 @@
         -->
 
         <!-- Server log : JDBC appender template for Oracle
-
         NOTES:
-
         To write the server log to this format, uncomment the JDBC, RollingFile and Failover appenders below and ensure that the log4j2.db.properties
         are populated with valid values.
-
         In PingFailover, the retryIntervalSeconds is the number of seconds that should pass before retrying the primary JDBC appender.
-
         bufferSize - If the buffer size is greater than 0, this causes the appender to buffer
         log events and flush whenever the buffer reaches this size. The default bufferSize of 256 will provide the optimal balance between performance and memory usage.
         This value can be changed depending on the configuration of your environment.
-
         You must also uncomment the reference to the ServerLogToOracleDB-FAILOVER appender in the
         "Root logger" (near the end of this configuration file) before the appender can be
         used:
@@ -345,8 +329,8 @@
             <Column name="username" pattern="%X{subject}" />
             <Column name="message" pattern="%escape{DB}{%m}" />
         </JDBC>
-        <RollingFile name="ServerLogToOracleDB-FILE" fileName="${sys:pf.log.dir}/server-oracle-failover.log"
-            filePattern="${sys:pf.log.dir}/server-oracle-failover.%d{yyyy-MM-dd}.log" >
+        <RollingFile name="ServerLogToOracleDB-FILE" fileName="/opt/logs/server-oracle-failover.log"
+            filePattern="/opt/logs/server-oracle-failover.%d{yyyy-MM-dd}.log" >
             <PatternLayout>
                 <pattern>%d %X{trackingid} %-5p [%c] %X{connectionid} %X{subject} %m %n</pattern>
             </PatternLayout>
@@ -362,18 +346,13 @@
         -->
 
         <!-- Server log : JDBC appender template for SQLServer
-
         NOTES:
-
         To write the server log to this format, uncomment the JDBC, RollingFile and Failover appenders below and ensure that the log4j2.db.properties
         are populated with valid values.
-
         In PingFailover, the retryIntervalSeconds is the number of seconds that should pass before retrying the primary JDBC appender.
-
         bufferSize - If the buffer size is greater than 0, this causes the appender to buffer
         log events and flush whenever the buffer reaches this size. The default bufferSize of 256 will provide the optimal balance between performance and memory usage.
         This value can be changed depending on the configuration of your environment.
-
         You must also uncomment the reference to the ServerLogToSQLServerDB-FAILOVER appender in the
         "Root logger" (near the end of this configuration file) before the appender can be
         used:
@@ -389,8 +368,8 @@
             <Column name="username" pattern="%X{subject}" />
             <Column name="message" pattern="%escape{DB}{%m}" />
         </JDBC>
-        <RollingFile name="ServerLogToSQLServerDB-FILE" fileName="${sys:pf.log.dir}/server-sqlserver-failover.log"
-            filePattern="${sys:pf.log.dir}/server-sqlserver-failover.%d{yyyy-MM-dd}.log" >
+        <RollingFile name="ServerLogToSQLServerDB-FILE" fileName="/opt/logs/server-sqlserver-failover.log"
+            filePattern="/opt/logs/server-sqlserver-failover.%d{yyyy-MM-dd}.log" >
             <PatternLayout>
                 <pattern>%d %X{trackingid} %-5p [%c] %X{connectionid} %X{subject} %m %n</pattern>
             </PatternLayout>
@@ -406,18 +385,13 @@
         -->
 
         <!-- Server log : JDBC appender template for MySQL
-
         NOTES:
-
         To write the server log to this format, uncomment the JDBC, RollingFile and Failover appenders below and ensure that the log4j2.db.properties
         are populated with valid values.
-
         In PingFailover, the retryIntervalSeconds is the number of seconds that should pass before retrying the primary JDBC appender.
-
         bufferSize - If the buffer size is greater than 0, this causes the appender to buffer
         log events and flush whenever the buffer reaches this size. The default bufferSize of 256 will provide the optimal balance between performance and memory usage.
         This value can be changed depending on the configuration of your environment.
-
         You must also uncomment the reference to the ServerLogToMySQLDB-FAILOVER appender in the
         "Root logger" (near the end of this configuration file) before the appender can be
         used:
@@ -433,8 +407,8 @@
             <Column name="username" pattern="%X{subject}" />
             <Column name="message" pattern="%escape{MYSQL}{%m}" />
         </JDBC>
-        <RollingFile name="ServerLogToMySQLDB-FILE" fileName="${sys:pf.log.dir}/server-mysql-failover.log"
-            filePattern="${sys:pf.log.dir}/server-mysql-failover.%d{yyyy-MM-dd}.log" >
+        <RollingFile name="ServerLogToMySQLDB-FILE" fileName="/opt/logs/server-mysql-failover.log"
+            filePattern="/opt/logs/server-mysql-failover.%d{yyyy-MM-dd}.log" >
             <PatternLayout>
                 <pattern>%d %X{trackingid} %-5p [%c] %X{connectionid} %X{subject} %m %n</pattern>
             </PatternLayout>
@@ -450,18 +424,13 @@
         -->
 
         <!-- Server log : JDBC appender template for PostgreSQL
-
          NOTES:
-
          To write the server log to this format, uncomment the JDBC, RollingFile and Failover appenders below and ensure that the log4j2.db.properties
          are populated with valid values.
-
          In PingFailover, the retryIntervalSeconds is the number of seconds that should pass before retrying the primary JDBC appender.
-
          bufferSize - If the buffer size is greater than 0, this causes the appender to buffer
          log events and flush whenever the buffer reaches this size. The default bufferSize of 256 will provide the optimal balance between performance and memory usage.
          This value can be changed depending on the configuration of your environment.
-
          You must also uncomment the reference to the ServerLogToPostgreSQLDB-FAILOVER appender in the
          "Root logger" (near the end of this configuration file) before the appender can be
          used:
@@ -477,8 +446,8 @@
             <ColumnMapping name="username" pattern="%X{subject}"  />
             <ColumnMapping name="message" pattern="%escape{DB}{%m}"  />
         </JDBC>
-        <RollingFile name="ServerLogToPostgreSQLDB-FILE" fileName="${sys:pf.log.dir}/server-postgresql-failover.log"
-                     filePattern="${sys:pf.log.dir}/server-postgresql-failover.%d{yyyy-MM-dd}.log" >
+        <RollingFile name="ServerLogToPostgreSQLDB-FILE" fileName="/opt/logs/server-postgresql-failover.log"
+                     filePattern="/opt/logs/server-postgresql-failover.%d{yyyy-MM-dd}.log" >
             <PatternLayout>
                 <pattern>%d %X{trackingid} %-5p [%c] %X{connectionid} %X{subject} %m %n</pattern>
             </PatternLayout>
@@ -494,14 +463,10 @@
         -->
 
         <!-- Provisioner log : JDBC appender template for Oracle
-
         NOTES:
-
         To write the provisioner log to this format, uncomment the JDBC, RollingFile and Failover appenders below and ensure that the log4j2.db.properties
         are populated with valid values.
-
         In PingFailover, the retryIntervalSeconds is the number of seconds that should pass before retrying the primary JDBC appender.
-
         You must also uncomment the reference to the ProvisionerLogToOracleDB-FAILOVER appender in the
         "com.pingidentity.provisioner" category (near the end of this configuration file) before the appender can be
         used:
@@ -515,8 +480,8 @@
             <Column name="channelcode" pattern="%X{ChannelCode}" />
             <Column name="message" pattern="%escape{DB}{%m}" />
         </JDBC>
-        <RollingFile name="ProvisionerLogToOracleDB-FILE" fileName="${sys:pf.log.dir}/provisioner-oracle-failover.log"
-            filePattern="${sys:pf.log.dir}/provisioner-oracle-failover.%d{yyyy-MM-dd}.log" >
+        <RollingFile name="ProvisionerLogToOracleDB-FILE" fileName="/opt/logs/provisioner-oracle-failover.log"
+            filePattern="/opt/logs/provisioner-oracle-failover.%d{yyyy-MM-dd}.log" >
             <PatternLayout>
                 <pattern>%d{ABSOLUTE} %-5p [%c{1}] %m %x %X{ChannelCode}%n</pattern>
             </PatternLayout>
@@ -532,14 +497,10 @@
         -->
 
         <!-- Provisioner log : JDBC appender template for SQLServer
-
         NOTES:
-
         To write the provisioner log to this format, uncomment the JDBC, RollingFile and Failover appenders below and ensure that the log4j2.db.properties
         are populated with valid values.
-
         In PingFailover, the retryIntervalSeconds is the number of seconds that should pass before retrying the primary JDBC appender.
-
         You must also uncomment the reference to the ProvisionerLogToSQLServerDB-FAILOVER appender in the
         "com.pingidentity.provisioner" category (near the end of this configuration file) before the appender can be
         used:
@@ -553,8 +514,8 @@
             <Column name="channelcode" pattern="%X{ChannelCode}" />
             <Column name="message" pattern="%escape{DB}{%m}" />
         </JDBC>
-        <RollingFile name="ProvisionerLogToSQLServerDB-FILE" fileName="${sys:pf.log.dir}/provisioner-sqlserver-failover.log"
-            filePattern="${sys:pf.log.dir}/provisioner-sqlserver-failover.%d{yyyy-MM-dd}.log" >
+        <RollingFile name="ProvisionerLogToSQLServerDB-FILE" fileName="/opt/logs/provisioner-sqlserver-failover.log"
+            filePattern="/opt/logs/provisioner-sqlserver-failover.%d{yyyy-MM-dd}.log" >
             <PatternLayout>
                 <pattern>%d{ABSOLUTE} %-5p [%c{1}] %m %x %X{ChannelCode}%n</pattern>
             </PatternLayout>
@@ -570,14 +531,10 @@
         -->
 
         <!-- Provisioner log : JDBC appender template for MySQL
-
         NOTES:
-
         To write the provisioner log to this format, uncomment the JDBC, RollingFile and Failover appenders below and ensure that the log4j2.db.properties
         are populated with valid values.
-
         In PingFailover, the retryIntervalSeconds is the number of seconds that should pass before retrying the primary JDBC appender.
-
         You must also uncomment the reference to the ProvisionerLogToMySQLDB-FAILOVER appender in the
         "com.pingidentity.provisioner" category (near the end of this configuration file) before the appender can be
         used:
@@ -591,8 +548,8 @@
             <Column name="channelcode" pattern="%X{ChannelCode}" />
             <Column name="message" pattern="%escape{MYSQL}{%m}" />
         </JDBC>
-        <RollingFile name="ProvisionerLogToMySQLDB-FILE" fileName="${sys:pf.log.dir}/provisioner-mysql-failover.log"
-            filePattern="${sys:pf.log.dir}/provisioner-mysql-failover.%d{yyyy-MM-dd}.log" >
+        <RollingFile name="ProvisionerLogToMySQLDB-FILE" fileName="/opt/logs/provisioner-mysql-failover.log"
+            filePattern="/opt/logs/provisioner-mysql-failover.%d{yyyy-MM-dd}.log" >
             <PatternLayout>
                 <pattern>%d{ABSOLUTE} %-5p [%c{1}] %m %x %X{ChannelCode}%n</pattern>
             </PatternLayout>
@@ -608,14 +565,10 @@
         -->
 
         <!-- Provisioner log : JDBC appender template for PostgreSQL
-
         NOTES:
-
         To write the provisioner log to this format, uncomment the JDBC, RollingFile and Failover appenders below and ensure that the log4j2.db.properties
         are populated with valid values.
-
         In PingFailover, the retryIntervalSeconds is the number of seconds that should pass before retrying the primary JDBC appender.
-
         You must also uncomment the reference to the ProvisionerLogToPostgreSQLDB-FAILOVER appender in the
         "com.pingidentity.provisioner" category (near the end of this configuration file) before the appender can be
         used:
@@ -629,8 +582,8 @@
             <ColumnMapping name="channelcode" pattern="%X{ChannelCode}"  />
             <ColumnMapping name="message" pattern="%escape{DB}{%m}"  />
         </JDBC>
-        <RollingFile name="ProvisionerLogToPostgreSQLDB-FILE" fileName="${sys:pf.log.dir}/provisioner-postgresql-failover.log"
-            filePattern="${sys:pf.log.dir}/provisioner-postgresql-failover.%d{yyyy-MM-dd}.log" >
+        <RollingFile name="ProvisionerLogToPostgreSQLDB-FILE" fileName="/opt/logs/provisioner-postgresql-failover.log"
+            filePattern="/opt/logs/provisioner-postgresql-failover.%d{yyyy-MM-dd}.log" >
             <PatternLayout>
                 <pattern>%d{ABSOLUTE} %-5p [%c{1}] %m %x %X{ChannelCode}%n</pattern>
             </PatternLayout>
@@ -646,14 +599,10 @@
         -->
 
         <!--  Outbound provisioner audit log : JDBC appender template for Oracle Database
-
         NOTES:
-
         To write the provisioner log to this format, uncomment the JDBC, RollingFile and Failover appenders below and ensure that the log4j2.db.properties
         are populated with valid values.
-
         In PingFailover, the retryIntervalSeconds is the number of seconds that should pass before retrying the primary JDBC appender.
-
         You must also uncomment the reference to the OutboundProvisionerEventToOracleDB-FAILOVER appender in
         "Set up the Outbound provisioner audit logger" section (defined below in this configuration file) before the appender can be
         used:
@@ -670,8 +619,8 @@
             <Column name="is_success" pattern="%X{is_success}" />
             <Column name="failure_cause" pattern="%X{non_success_cause}" />
         </JDBC>
-        <RollingFile name="OutboundProvisionerEventToOracleDB-FILE" fileName="${sys:pf.log.dir}/provisioner-audit-oracle-failover.log"
-            filePattern="${sys:pf.log.dir}/provisioner-audit-oracle-failover.%d{yyyy-MM-dd}.log" >
+        <RollingFile name="OutboundProvisionerEventToOracleDB-FILE" fileName="/opt/logs/provisioner-audit-oracle-failover.log"
+            filePattern="/opt/logs/provisioner-audit-oracle-failover.%d{yyyy-MM-dd}.log" >
             <PatternLayout>
                 <pattern>%d| %X{cycle_id}| %X{channel_id}| %X{event_type}| %X{source_id}| %X{target_id}| %X{is_success}| %X{non_success_cause} %n</pattern>
             </PatternLayout>
@@ -687,14 +636,10 @@
         -->
 
         <!--  Outbound provisioner audit log : JDBC appender template for SQLServer Database
-
         NOTES:
-
         To write the provisioner log to this format, uncomment the JDBC, RollingFile and Failover appenders below and ensure that the log4j2.db.properties
         are populated with valid values.
-
         In PingFailover, the retryIntervalSeconds is the number of seconds that should pass before retrying the primary JDBC appender.
-
         You must also uncomment the reference to the OutboundProvisionerEventToSQLServerDB-FAILOVER appender in
         "Set up the Outbound provisioner audit logger" section (defined below in this configuration file) before the appender can be
         used:
@@ -711,8 +656,8 @@
             <Column name="is_success" pattern="%X{is_success}" />
             <Column name="failure_cause" pattern="%X{non_success_cause}" />
         </JDBC>
-        <RollingFile name="OutboundProvisionerEventToSQLServerDB-FILE" fileName="${sys:pf.log.dir}/provisioner-audit-sqlserver-failover.log"
-            filePattern="${sys:pf.log.dir}/provisioner-audit-sqlserver-failover.%d{yyyy-MM-dd}.log" >
+        <RollingFile name="OutboundProvisionerEventToSQLServerDB-FILE" fileName="/opt/logs/provisioner-audit-sqlserver-failover.log"
+            filePattern="/opt/logs/provisioner-audit-sqlserver-failover.%d{yyyy-MM-dd}.log" >
             <PatternLayout>
                 <pattern>%d| %X{cycle_id}| %X{channel_id}| %X{event_type}| %X{source_id}| %X{target_id}| %X{is_success}| %X{non_success_cause} %n</pattern>
             </PatternLayout>
@@ -728,14 +673,10 @@
         -->
 
         <!--  Outbound provisioner audit log : JDBC appender template for MySQL Database
-
         NOTES:
-
         To write the provisioner log to this format, uncomment the JDBC, RollingFile and Failover appenders below and ensure that the log4j2.db.properties
         are populated with valid values.
-
         In PingFailover, the retryIntervalSeconds is the number of seconds that should pass before retrying the primary JDBC appender.
-
         You must also uncomment the reference to the OutboundProvisionerEventToMySQLDB-FAILOVER appender in
         "Set up the Outbound provisioner audit logger" section (defined below in this configuration file) before the appender can be
         used:
@@ -752,8 +693,8 @@
             <Column name="is_success" pattern="%X{is_success}" />
             <Column name="failure_cause" pattern="%X{non_success_cause}" />
         </JDBC>
-        <RollingFile name="OutboundProvisionerEventToMySQLDB-FILE" fileName="${sys:pf.log.dir}/provisioner-audit-mysql-failover.log"
-            filePattern="${sys:pf.log.dir}/provisioner-audit-mysql-failover.%d{yyyy-MM-dd}.log" >
+        <RollingFile name="OutboundProvisionerEventToMySQLDB-FILE" fileName="/opt/logs/provisioner-audit-mysql-failover.log"
+            filePattern="/opt/logs/provisioner-audit-mysql-failover.%d{yyyy-MM-dd}.log" >
             <PatternLayout>
                 <pattern>%d| %X{cycle_id}| %X{channel_id}| %X{event_type}| %X{source_id}| %X{target_id}| %X{is_success}| %X{non_success_cause} %n</pattern>
             </PatternLayout>
@@ -769,14 +710,10 @@
         -->
 
         <!--  Outbound provisioner audit log : JDBC appender template for PostgreSQL
-
         NOTES:
-
         To write the provisioner log to this format, uncomment the JDBC, RollingFile and Failover appenders below and ensure that the log4j2.db.properties
         are populated with valid values.
-
         In PingFailover, the retryIntervalSeconds is the number of seconds that should pass before retrying the primary JDBC appender.
-
         You must also uncomment the reference to the OutboundProvisionerEventToPostgreSQLDB-FAILOVER appender in
         "Set up the Outbound provisioner audit logger" section (defined below in this configuration file) before the appender can be
         used:
@@ -793,8 +730,8 @@
             <ColumnMapping name="is_success" pattern="%X{is_success}"  />
             <ColumnMapping name="failure_cause" pattern="%X{non_success_cause}"  />
         </JDBC>
-        <RollingFile name="OutboundProvisionerEventToPostgreSQLDB-FILE" fileName="${sys:pf.log.dir}/provisioner-audit-postgresql-failover.log"
-            filePattern="${sys:pf.log.dir}/provisioner-audit-postgresql-failover.%d{yyyy-MM-dd}.log" >
+        <RollingFile name="OutboundProvisionerEventToPostgreSQLDB-FILE" fileName="/opt/logs/provisioner-audit-postgresql-failover.log"
+            filePattern="/opt/logs/provisioner-audit-postgresql-failover.%d{yyyy-MM-dd}.log" >
             <PatternLayout>
                 <pattern>%d| %X{cycle_id}| %X{channel_id}| %X{event_type}| %X{source_id}| %X{target_id}| %X{is_success}| %X{non_success_cause} %n</pattern>
             </PatternLayout>
@@ -810,18 +747,13 @@
         -->
 
         <!-- Outbound provisioner audit log : CEF Formatted syslog appender
-
         NOTES:
-
         To write the audit log to this format, uncomment the Socket, RollingFile and Failover appenders below and replace
         the following placeholders in the appender below with the URL of your syslog host server:
-
         {syslog.host}
         {syslog.port}
         {syslog.protocol} - UDP or TCP.
-
         * Failover is only supported for the TCP protocol *
-
         You must also uncomment the reference to OutboundProvisionerEventToCEFSyslog-FAILOVER appender in
         "Set up the Outbound provisioner audit logger" section (defined below in this configuration file)
         before the appender can be used:
@@ -834,8 +766,8 @@
                 </PatternLayout>
             </PingSyslogLayout>
         </Socket>
-        <RollingFile name="OutboundProvisionerEventToCEFSyslog-FILE" fileName="${sys:pf.log.dir}/provisioner-audit-cef-syslog-failover.log"
-            filePattern="${sys:pf.log.dir}/provisioner-audit-cef-syslog-failover.%d{yyyy-MM-dd}.log" >
+        <RollingFile name="OutboundProvisionerEventToCEFSyslog-FILE" fileName="/opt/logs/provisioner-audit-cef-syslog-failover.log"
+            filePattern="/opt/logs/provisioner-audit-cef-syslog-failover.%d{yyyy-MM-dd}.log" >
             <PatternLayout>
                 <pattern>%escape{CEF}{CEF:0|Ping Identity|PingFederate|%X{pfversion}|%X{event_type}|%X{event_type}|0|rt=%d{MMM dd yyyy HH:mm:ss.SSS} cs1Label=Cycle ID cs1=%X{cycle_id} cs2Label=Channel ID cs2=%X{channel_id} cs3Label=Event type cs3=%X{event_type} cs4Label=Source ID cs4=%X{source_id} cs5Label=Target ID cs5=%X{target_id} cs6Label=Was Event Successful cs6=%X{is_success} cs7Label=Failure Cause cs7=%X{non_success_cause} %n}</pattern>
             </PatternLayout>
@@ -851,15 +783,13 @@
         -->
 
         <!-- Outbound provisioner audit log for CEFFile: A time/date based rolling appender
-
         NOTES:
-
         You must also uncomment the reference to the "OutboundProvisionerEventToCEFFile" appender in the
         "Set up the Outbound provisioner audit logger" section before the appender can be used:
         -->
         <!--
-        <RollingFile name="OutboundProvisionerEventToCEFFile" fileName="${sys:pf.log.dir}/provisioner-audit-cef.log"
-            filePattern="${sys:pf.log.dir}/provisioner-audit-cef.%d{yyyy-MM-dd}.log" >
+        <RollingFile name="OutboundProvisionerEventToCEFFile" fileName="/opt/logs/provisioner-audit-cef.log"
+            filePattern="/opt/logs/provisioner-audit-cef.%d{yyyy-MM-dd}.log" >
             <PatternLayout>
                 <pattern>%escape{CEF}{CEF:0|Ping Identity|PingFederate|%X{pfversion}|%X{event_type}|%X{event_type}|0|rt=%d{MMM dd yyyy HH:mm:ss.SSS} cs1Label=Cycle ID cs1=%X{cycle_id} cs2Label=Channel ID cs2=%X{channel_id} cs3Label=Event type cs3=%X{event_type} cs4Label=Source ID cs4=%X{source_id} cs5Label=Target ID cs5=%X{target_id} cs6Label=Was Event Successful cs6=%X{is_success} cs7Label=Failure Cause cs7=%X{non_success_cause} %n}</pattern>
             </PatternLayout>
@@ -870,17 +800,12 @@
         -->
 
         <!-- Security Audit log : JDBC appender template for Oracle
-
         NOTES:
-
         To write the audit log to this format, uncomment the JDBC, RollingFile and Failover appenders below and ensure that the log4j2.db.properties
         are populated with valid values.
-
         In PingFailover, the retryIntervalSeconds is the number of seconds that should pass before retrying the primary JDBC appender.
-
         You must also uncomment the reference to this appender in one or more of the following loggers
         (under "Loggers" below) before it can be used:
-
         org.sourceid.websso.profiles.sp.SpAuditLogger (when PingFederate is acting as a Service Provider)
         org.sourceid.websso.profiles.idp.IdpAuditLogger (when PingFederate is acting as an Identity Provider)
         org.sourceid.wstrust.log.STSAuditLogger (when PingFederate is acting as a Security Token Service)
@@ -904,8 +829,8 @@
             <Column name="responsetime" pattern="%X{responsetime}" />
             <Column name="trackingid" pattern="%X{trackingid}" />
         </JDBC>
-        <RollingFile name="SecurityAuditToOracleDB-FILE" fileName="${sys:pf.log.dir}/audit-oracle-failover.log"
-            filePattern="${sys:pf.log.dir}/audit-oracle-failover.%d{yyyy-MM-dd}.log" >
+        <RollingFile name="SecurityAuditToOracleDB-FILE" fileName="/opt/logs/audit-oracle-failover.log"
+            filePattern="/opt/logs/audit-oracle-failover.%d{yyyy-MM-dd}.log" >
             <PatternLayout>
                 <pattern>%d| %X{trackingid}| %X{event}| %X{subject}| %X{ip} | %X{app}| %X{connectionid}| %X{protocol}| %X{host}| %X{role}| %X{status}| %X{adapterid}| %X{description}| %X{responsetime} %n</pattern>
             </PatternLayout>
@@ -921,17 +846,12 @@
         -->
 
         <!-- Security Audit log : JDBC appender template for SQLServer
-
         NOTES:
-
         To write the audit log to this format, uncomment the JDBC, RollingFile and Failover appenders below and ensure that the log4j2.db.properties
         are populated with valid values.
-
         In PingFailover, the retryIntervalSeconds is the number of seconds that should pass before retrying the primary JDBC appender.
-
         You must also uncomment the reference to this appender in one or more of the following loggers
         (under "Loggers" below) before it can be used:
-
         org.sourceid.websso.profiles.sp.SpAuditLogger (when PingFederate is acting as a Service Provider)
         org.sourceid.websso.profiles.idp.IdpAuditLogger (when PingFederate is acting as an Identity Provider)
         org.sourceid.wstrust.log.STSAuditLogger (when PingFederate is acting as a Security Token Service)
@@ -955,8 +875,8 @@
             <Column name="responsetime" pattern="%X{responsetime}" />
             <Column name="trackingid" pattern="%X{trackingid}" />
         </JDBC>
-        <RollingFile name="SecurityAuditToSQLServerDB-FILE" fileName="${sys:pf.log.dir}/audit-sqlserver-failover.log"
-            filePattern="${sys:pf.log.dir}/audit-sqlserver-failover.%d{yyyy-MM-dd}.log" >
+        <RollingFile name="SecurityAuditToSQLServerDB-FILE" fileName="/opt/logs/audit-sqlserver-failover.log"
+            filePattern="/opt/logs/audit-sqlserver-failover.%d{yyyy-MM-dd}.log" >
             <PatternLayout>
                 <pattern>%d| %X{trackingid}| %X{event}| %X{subject}| %X{ip} | %X{app}| %X{connectionid}| %X{protocol}| %X{host}| %X{role}| %X{status}| %X{adapterid}| %X{description}| %X{responsetime} %n</pattern>
             </PatternLayout>
@@ -972,17 +892,12 @@
         -->
 
         <!-- Security Audit log : JDBC appender template for MySQL
-
         NOTES:
-
         To write the audit log to this format, uncomment the JDBC, RollingFile and Failover appenders below and ensure that the log4j2.db.properties
         are populated with valid values.
-
         In PingFailover, the retryIntervalSeconds is the number of seconds that should pass before retrying the primary JDBC appender.
-
         You must also uncomment the reference to this appender in one or more of the following loggers
         (under "Loggers" below) before it can be used:
-
         org.sourceid.websso.profiles.sp.SpAuditLogger (when PingFederate is acting as a Service Provider)
         org.sourceid.websso.profiles.idp.IdpAuditLogger (when PingFederate is acting as an Identity Provider)
         org.sourceid.wstrust.log.STSAuditLogger (when PingFederate is acting as a Security Token Service)
@@ -1006,8 +921,8 @@
             <Column name="responsetime" pattern="%X{responsetime}" />
             <Column name="trackingid" pattern="%X{trackingid}" />
         </JDBC>
-        <RollingFile name="SecurityAuditToMySQLDB-FILE" fileName="${sys:pf.log.dir}/audit-mysql-failover.log"
-            filePattern="${sys:pf.log.dir}/audit-mysql-failover.%d{yyyy-MM-dd}.log" >
+        <RollingFile name="SecurityAuditToMySQLDB-FILE" fileName="/opt/logs/audit-mysql-failover.log"
+            filePattern="/opt/logs/audit-mysql-failover.%d{yyyy-MM-dd}.log" >
             <PatternLayout>
                 <pattern>%d| %X{trackingid}| %X{event}| %X{subject}| %X{ip} | %X{app}| %X{connectionid}| %X{protocol}| %X{host}| %X{role}| %X{status}| %X{adapterid}| %X{description}| %X{responsetime} %n</pattern>
             </PatternLayout>
@@ -1023,17 +938,12 @@
         -->
 
         <!-- Security Audit log : JDBC appender template for PostgreSQL
-
         NOTES:
-
         To write the audit log to this format, uncomment the JDBC, RollingFile and Failover appenders below and ensure that the log4j2.db.properties
         are populated with valid values.
-
         In PingFailover, the retryIntervalSeconds is the number of seconds that should pass before retrying the primary JDBC appender.
-
         You must also uncomment the reference to this appender in one or more of the following loggers
         (under "Loggers" below) before it can be used:
-
         org.sourceid.websso.profiles.sp.SpAuditLogger (when PingFederate is acting as a Service Provider)
         org.sourceid.websso.profiles.idp.IdpAuditLogger (when PingFederate is acting as an Identity Provider)
         org.sourceid.wstrust.log.STSAuditLogger (when PingFederate is acting as a Security Token Service)
@@ -1057,8 +967,8 @@
             <ColumnMapping name="responsetime" pattern="%X{responsetime}" type="java.lang.Integer"/>
             <ColumnMapping name="trackingid" pattern="%X{trackingid}" />
         </JDBC>
-        <RollingFile name="SecurityAuditToPostgreSQLDB-FILE" fileName="${sys:pf.log.dir}/audit-postgresql-failover.log"
-                     filePattern="${sys:pf.log.dir}/audit-postgresql-failover.%d{yyyy-MM-dd}.log" >
+        <RollingFile name="SecurityAuditToPostgreSQLDB-FILE" fileName="/opt/logs/audit-postgresql-failover.log"
+                     filePattern="/opt/logs/audit-postgresql-failover.%d{yyyy-MM-dd}.log" >
             <PatternLayout>
                 <pattern>%d| %X{trackingid}| %X{event}| %X{subject}| %X{ip} | %X{app}| %X{connectionid}| %X{protocol}| %X{host}| %X{role}| %X{status}| %X{adapterid}| %X{description}| %X{responsetime} %n</pattern>
             </PatternLayout>
@@ -1074,37 +984,30 @@
         -->
 
         <!-- Security Audit log : CEF Formatted syslog appender
-
         NOTES:
-
         To write the audit log to this format, uncomment the Socket, RollingFile and Failover appenders below and replace
         the following placeholders in the appender below with the URL of your syslog host server:
-
         {syslog.host}
         {syslog.port}
         {syslog.protocol} - UDP or TCP
-
         * Failover is only supported for the TCP protocol *
-
         You must also uncomment the reference to SecurityAuditToCEFSyslog-FAILOVER in one or more of the following loggers
         (under "Loggers" below) before it can be used:
-
         org.sourceid.websso.profiles.sp.SpAuditLogger (when PingFederate is acting as a Service Provider)
         org.sourceid.websso.profiles.idp.IdpAuditLogger (when PingFederate is acting as an Identity Provider)
         org.sourceid.wstrust.log.STSAuditLogger (when PingFederate is acting as a Security Token Service)
         org.sourceid.websso.profiles.idp.AsAuditLogger (when PingFederate is acting as an OAuth Authorization Server)
         -->
-        
         <!--
-        <Socket name="SecurityAuditToCEFSyslog" host="logstash" port="20514" protocol="TCP" ignoreExceptions="false">
+        <Socket name="SecurityAuditToCEFSyslog" host="{syslog.host}" port="{syslog.port}" protocol="{syslog.protocol}" ignoreExceptions="false">
             <PingSyslogLayout>
                 <PatternLayout>
                     <pattern>%escape{CEF}{CEF:0|Ping Identity|PingFederate|%X{pfversion}|%X{event}|%X{event}|0|rt=%d{MMM dd yyyy HH:mm:ss.SSS} duid=%X{subject} src=%X{ip} msg=%X{status} cs1Label=Target Application URL cs1=%X{app} cs2Label=Connection ID cs2=%X{connectionid} cs3Label=Protocol cs3=%X{protocol} dvchost=%X{host} cs4Label=Role cs4=%X{role} externalId=%X{trackingid} cs5Label=SP Local User ID cs5=%X{localuserid} cs6Label=Attributes cs6=%X{attributes} %n}</pattern>
                 </PatternLayout>
             </PingSyslogLayout>
         </Socket>
-        <RollingFile name="SecurityAuditToCEFSyslog-FILE" fileName="${sys:pf.log.dir}/audit-cef-syslog-failover.log"
-            filePattern="${sys:pf.log.dir}/audit-cef-syslog-failover.%d{yyyy-MM-dd}.log" >
+        <RollingFile name="SecurityAuditToCEFSyslog-FILE" fileName="/opt/logs/audit-cef-syslog-failover.log"
+            filePattern="/opt/logs/audit-cef-syslog-failover.%d{yyyy-MM-dd}.log" >
             <PatternLayout>
                 <pattern>%escape{CEF}{CEF:0|Ping Identity|PingFederate|%X{pfversion}|%X{event}|%X{event}|0|rt=%d{MMM dd yyyy HH:mm:ss.SSS} duid=%X{subject} src=%X{ip} msg=%X{status} cs1Label=Target Application URL cs1=%X{app} cs2Label=Connection ID cs2=%X{connectionid} cs3Label=Protocol cs3=%X{protocol} dvchost=%X{host} cs4Label=Role cs4=%X{role} externalId=%X{trackingid} cs5Label=SP Local User ID cs5=%X{localuserid} cs6Label=Attributes cs6=%X{attributes} %n}</pattern>
             </PatternLayout>
@@ -1120,22 +1023,18 @@
         -->
 
         <!-- Security Audit log : CEF Formatted file appender
-
         NOTES:
-
         To write the audit log to this format, uncomment the appender below.
-
         You must also uncomment the reference to this appender in one or more of the following loggers
         (under "Loggers" below) before it can be used:
-
         org.sourceid.websso.profiles.sp.SpAuditLogger (when PingFederate is acting as a Service Provider)
         org.sourceid.websso.profiles.idp.IdpAuditLogger (when PingFederate is acting as an Identity Provider)
         org.sourceid.wstrust.log.STSAuditLogger (when PingFederate is acting as a Security Token Service)
         org.sourceid.websso.profiles.idp.AsAuditLogger (when PingFederate is acting as an OAuth Authorization Server)
         -->
         <!--
-        <RollingFile name="SecurityAuditToCEFFile" fileName="${sys:pf.log.dir}/audit-cef.log"
-            filePattern="${sys:pf.log.dir}/audit-cef.%d{yyyy-MM-dd}.log" >
+        <RollingFile name="SecurityAuditToCEFFile" fileName="/opt/logs/audit-cef.log"
+            filePattern="/opt/logs/audit-cef.%d{yyyy-MM-dd}.log" >
             <PatternLayout>
                 <pattern>%escape{CEF}{CEF:0|Ping Identity|PingFederate|%X{pfversion}|%X{event}|%X{event}|0|rt=%d{MMM dd yyyy HH:mm:ss.SSS} duid=%X{subject} src=%X{ip} msg=%X{status} cs1Label=Target Application URL cs1=%X{app} cs2Label=Connection ID cs2=%X{connectionid} cs3Label=Protocol cs3=%X{protocol} dvchost=%X{host} cs4Label=Role cs4=%X{role} externalId=%X{trackingid} cs5Label=SP Local User ID cs5=%X{localuserid} cs6Label=Attributes cs6=%X{attributes} %n}</pattern>
             </PatternLayout>
@@ -1182,25 +1081,10 @@
         <!-- Limit categories -->
         <!-- ================ -->
 
-        <!-- Dialing back the PingOne IKs logging -->
-        <Logger name="com.pingidentity.oobauth.pingone.mfa" level="INFO" />
-        <Logger name="com.pingidentity.adapters.pingone.risk.shade" level="INFO" />
-        <Logger name="com.pingidentity.adapters.pingone.mfa.shade" level="INFO"/>
-        <Logger name="com.pingidentity.adapters.pingone.verify.shade.org" level="INFO"/>
-        <Logger name="com.pingidentity.integrations.provisioner.pingone.shaded" level="INFO"/>
-        
-        <!-- Dialing back DEBUG things -->
-        <Logger name="org.sourceid.servlet.HttpServletRespProxy" level="INFO" />
-        <Logger name="org.sourceid.websso.servlet.IntegrationControllerServlet" level="INFO" />
-        <Logger name="org.sourceid.saml20.service.impl" level="INFO" />
-        <Logger name="com.pingidentity.jgroups.MuxInvocationHandler" level="INFO" />
-        <Logger name="org.sourceid.util.log.internal.TrackingIdSupport" level="INFO" />
-        <Logger name="org.sourceid.saml20.domain.mgmt.impl.ReplicationStateManagerImpl" level="INFO" />
-        <Logger name="com.pingidentity.common.util.timers.EventTimer" level="INFO" />
-
         <Logger name="org.apache.http.wire" level="INFO" />
         <Logger name="com.pingidentity.pf.email" level="INFO" />
         <Logger name="org.sourceid" level="${PF_LOG_LEVEL}" />
+        <Logger name="org.sourceid.saml20.domain.mgmt.impl.DataDeployer" level="DEBUG" />
         <Logger name="org.sourceid.saml20.util.SystemUtil" level="INFO" additivity="false">
             <AppenderRef ref="CONSOLE" />
             <AppenderRef ref="FILE" />
@@ -1268,21 +1152,18 @@
 
         <!--
             IMPORTANT:
-
             The following appenders cannot be configured with any others:
-
             SecurityAuditToCEFSyslog-FAILOVER
             SecurityAuditToMySQLDB-FAILOVER
             SecurityAuditToPostgreSQLDB-FAILOVER
             SecurityAuditToSQLServerDB-FAILOVER
             SecurityAuditToOracleDB-FAILOVER
-
             Each must be the only appender referenced in the logger org.sourceid.websso.profiles.sp.SpAuditLogger.
             If one of these appenders is added, remove the existing reference to "SecurityAudit2File".
         -->
         <Logger name="org.sourceid.websso.profiles.sp.SpAuditLogger"
                 level="INFO" additivity="false" includeLocation="false">
-            <appender-ref ref="SecurityAudit2File"/>
+            <appender-ref ref="SecurityAudit2Splunk" />
             <!--
                 <appender-ref ref="SecurityAuditToSQLServerDB-FAILOVER"/>
                 <appender-ref ref="SecurityAuditToOracleDB-FAILOVER"/>
@@ -1290,28 +1171,24 @@
                 <appender-ref ref="SecurityAuditToCEFFile"/>
                 <appender-ref ref="SecurityAuditToMySQLDB-FAILOVER"/>
                 <appender-ref ref="SecurityAuditToPostgreSQLDB-FAILOVER" />
-                <appender-ref ref="SecurityAudit2Splunk"/>
-                <appender-ref ref="SecurityAudit2File" />
+                <appender-ref ref="SecurityAudit2File"/>
             -->
         </Logger>
 
         <!--
             IMPORTANT:
-
             The following appenders cannot be configured with any others:
-
             SecurityAuditToCEFSyslog-FAILOVER
             SecurityAuditToMySQLDB-FAILOVER
             SecurityAuditToPostgreSQLDB-FAILOVER
             SecurityAuditToSQLServerDB-FAILOVER
             SecurityAuditToOracleDB-FAILOVER
-
             Each must be the only appender referenced in the logger org.sourceid.websso.profiles.idp.IdpAuditLogger.
             If one of these appenders is added, remove the existing reference to "SecurityAudit2File".
         -->
         <Logger name="org.sourceid.websso.profiles.idp.IdpAuditLogger"
                 level="INFO" additivity="false" includeLocation="false">
-            <appender-ref ref="SecurityAudit2File"/>
+            <appender-ref ref="SecurityAudit2Splunk" />
             <!--
                 <appender-ref ref="SecurityAuditToCEFSyslog-FAILOVER"/>
                 <appender-ref ref="SecurityAuditToCEFFile"/>
@@ -1319,28 +1196,24 @@
                 <appender-ref ref="SecurityAuditToPostgreSQLDB-FAILOVER" />
                 <appender-ref ref="SecurityAuditToSQLServerDB-FAILOVER"/>
                 <appender-ref ref="SecurityAuditToOracleDB-FAILOVER"/>
-                <appender-ref ref="SecurityAudit2Splunk"/>
-                <appender-ref ref="SecurityAudit2File" />
+                <appender-ref ref="SecurityAudit2File"/>
             -->
         </Logger>
 
         <!--
             IMPORTANT:
-
             The following appenders cannot be configured with any others:
-
             SecurityAuditToCEFSyslog-FAILOVER
             SecurityAuditToMySQLDB-FAILOVER
             SecurityAuditToPostgreSQLDB-FAILOVER
             SecurityAuditToSQLServerDB-FAILOVER
             SecurityAuditToOracleDB-FAILOVER
-
             Each must be the only appender referenced in the logger org.sourceid.websso.profiles.idp.AsAuditLogger.
             If one of these appenders is added, remove the existing reference to "SecurityAudit2File".
         -->
         <Logger name="org.sourceid.websso.profiles.idp.AsAuditLogger"
                 level="INFO" additivity="false" includeLocation="false">
-            <appender-ref ref="SecurityAudit2File"/>
+                <appender-ref ref="SecurityAudit2Splunk"/>
             <!--
                 <appender-ref ref="SecurityAuditToCEFSyslog-FAILOVER"/>
                 <appender-ref ref="SecurityAuditToCEFFile"/>
@@ -1348,54 +1221,47 @@
                 <appender-ref ref="SecurityAuditToPostgreSQLDB-FAILOVER" />
                 <appender-ref ref="SecurityAuditToSQLServerDB-FAILOVER"/>
                 <appender-ref ref="SecurityAuditToOracleDB-FAILOVER"/>
-                <appender-ref ref="SecurityAudit2Splunk"/>
                 <appender-ref ref="SecurityAudit2File" />
             -->
         </Logger>
 
         <!--
             IMPORTANT:
-
             The following appenders cannot be configured with any others:
-
             SecurityAuditToCEFSyslog-FAILOVER
             SecurityAuditToMySQLDB-FAILOVER
             SecurityAuditToSQLServerDB-FAILOVER
             SecurityAuditToOracleDB-FAILOVER
-
             Each must be the only appender referenced in the logger org.sourceid.websso.profiles.idp.ClientRegistrationAuditLogger.
             If one of these appenders is added, remove the existing reference to "SecurityAudit2File".
         -->
         <Logger name="org.sourceid.websso.profiles.idp.ClientRegistrationAuditLogger"
                 level="INFO" additivity="false" includeLocation="false">
-            <appender-ref ref="SecurityAudit2File" />
+                <appender-ref ref="SecurityAudit2Splunk"/>
             <!--
                 <appender-ref ref="SecurityAuditToCEFSyslog-FAILOVER"/>
                 <appender-ref ref="SecurityAuditToCEFFile"/>
                 <appender-ref ref="SecurityAuditToMySQLDB-FAILOVER"/>
                 <appender-ref ref="SecurityAuditToSQLServerDB-FAILOVER"/>
                 <appender-ref ref="SecurityAuditToOracleDB-FAILOVER"/>
-                <appender-ref ref="SecurityAudit2Splunk"/>
+            <appender-ref ref="SecurityAudit2File" />
             -->
         </Logger>
 
         <!--
             IMPORTANT:
-
             The following appenders cannot be configured with any others:
-
             SecurityAuditToCEFSyslog
             SecurityAuditToMySQLDB-FAILOVER
             SecurityAuditToPostgreSQLDB-FAILOVER
             SecurityAuditToSQLServerDB-FAILOVER
             SecurityAuditToOracleDB-FAILOVER
-
             Each must be the only appender referenced in the logger org.sourceid.websso.profiles.idp.STSAuditLogger.
             If one of these appenders is added, remove the existing reference to "SecurityAudit2File".
         -->
         <Logger name="org.sourceid.wstrust.log.STSAuditLogger"
                 level="INFO" additivity="false" includeLocation="false">
-            <appender-ref ref="SecurityAudit2File" />
+                <appender-ref ref="SecurityAudit2Splunk"/>
             <!--
                 <appender-ref ref="SecurityAuditToCEFSyslog-FAILOVER"/>
                 <appender-ref ref="SecurityAuditToCEFFile"/>
@@ -1403,20 +1269,17 @@
                 <appender-ref ref="SecurityAuditToPostgreSQLDB-FAILOVER" />
                 <appender-ref ref="SecurityAuditToSQLServerDB-FAILOVER"/>
                 <appender-ref ref="SecurityAuditToOracleDB-FAILOVER"/>
-                <appender-ref ref="SecurityAudit2Splunk"/>
+            <appender-ref ref="SecurityAudit2File" />
             -->
         </Logger>
 
         <!--
             IMPORTANT:
-
             The following appenders cannot be configured with any others:
-
             ProvisionerLogToOracleDB-FAILOVER
             ProvisionerLogToSQLServerDB-FAILOVER
             ProvisionerLogToMySQLDB-FAILOVER
             ProvisionerLogToPostgreSQLDB-FAILOVER
-
             Each must be the only appender referenced in the logger com.pingidentity.provisioner.
             If one of these appenders is added, remove the existing reference to "ProvisionerLog" and "CONSOLE-PROVISIONER".
         -->
@@ -1465,15 +1328,12 @@
         <!-- ======================= -->
         <!--
         IMPORTANT:
-
         The following appenders cannot be configured with any others:
-
         OutboundProvisionerEventToSQLServerDB-FAILOVER
         OutboundProvisionerEventToOracleDB-FAILOVER
         OutboundProvisionerEventToMySQLDB-FAILOVER
         OutboundProvisionerEventToPostgreSQLDB-FAILOVER
         OutboundProvisionerEventToCEFSyslog-FAILOVER
-
         Each must be the only appender referenced in the logger com.pingidentity.provisioner.monitor.ProvisionerAuditLogger".
         If one of these appenders is added, remove the existing reference to "OutboundProvisionerEventToFile".
         -->
@@ -1504,9 +1364,7 @@
         <!-- ======================= -->
         <!--
             IMPORTANT:
-
             There can only be one Root logger, either <AsyncRoot> or <Root>.
-
             For database logging, comment the <AsyncRoot> block and uncomment the <Root> block.
         -->
         <AsyncRoot level="INFO" includeLocation="false">
@@ -1516,7 +1374,6 @@
 
         <!--
             The database connection pooling settings can be tuned in log4j2.db.properties.
-
             This Root logger will log to the configured database. The bufferSize defined in the appender
             will determine how often events are flushed to the database.
         -->
